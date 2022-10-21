@@ -9,7 +9,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using WEB_053503_NGUYEN2.Data;
 using WEB_053503_NGUYEN2.Entities;
-
+using WEB_053503_NGUYEN2.Models;
 
 namespace WEB_053503_NGUYEN2
 {
@@ -47,16 +47,18 @@ namespace WEB_053503_NGUYEN2
 
             services.AddControllersWithViews();
             services.AddRazorPages();
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = $"/Identity/Account/Login";
+                options.LogoutPath = $"/Identity/Account/Logout";
+         
+            });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        //public void Configure(IApplicationBuilder app, IWebHostEnvironment env,
-        //    ILoggerFactory loggerFactory, ApplicationDbContext dbContext,
-        //    UserManager<IdentityUser> usermanager, RoleManager<IdentityRole> rolemanager
-        //    )
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,
-                             ApplicationDbContext context, UserManager<ApplicationUser> userManager,
-                             RoleManager<IdentityRole> roleManager, ILoggerFactory logger)
+        public async void Configure(IApplicationBuilder app, IWebHostEnvironment env,
+                             ApplicationDbContext dbContext, UserManager<ApplicationUser> usermanager,
+                             RoleManager<IdentityRole> rolemanager, ILoggerFactory logger)
         {
             if (env.IsDevelopment())
             {
@@ -77,7 +79,7 @@ namespace WEB_053503_NGUYEN2
             app.UseAuthentication();
             app.UseAuthorization();
 
-            DbInitializer.InitializeAs(context, userManager, roleManager).Wait();
+            DbInitializer.InitializeAs(dbContext, usermanager, rolemanager).Wait();
            
 
             app.UseEndpoints(endpoints =>
@@ -87,6 +89,18 @@ namespace WEB_053503_NGUYEN2
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
+
+            var scopeFactory = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>();
+            using (var scope = scopeFactory.CreateScope())
+            {
+                var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+                var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+                var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+                await DbInitializer.InitializeAs(context, userManager,roleManager);
+            }
         }
+
+        
+
     }
 }

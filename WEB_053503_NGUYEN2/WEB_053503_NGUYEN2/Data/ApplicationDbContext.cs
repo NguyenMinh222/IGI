@@ -14,6 +14,7 @@ namespace WEB_053503_NGUYEN2.Data
         {
         }
 
-        
+        public DbSet<Car> Cars { get; set; }
+        public DbSet<CarGroup> CarGroups { get; set; }
     }
 }

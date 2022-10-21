@@ -26,8 +26,15 @@ using WEB_053503_NGUYEN2.Models;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 3 "D:\ИГИ\WEB_053503_NGUYEN2\WEB_053503_NGUYEN2\Views\_ViewImports.cshtml"
+using WEB_053503_NGUYEN2.Entities;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"c6e69ddb1ca0e197e43bbf71256be2add7470ad5", @"/Views/Shared/Components/Menu/Default.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"8cafb10211d3d92812fc6e445da091245318ed6c", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"522f55ad56caee34c07f9c332a421602c338a568", @"/Views/_ViewImports.cshtml")]
     #nullable restore
     public class Views_Shared_Components_Menu_Default : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<IEnumerable<MenuItem>>
     #nullable disable
@@ -74,7 +81,7 @@ using WEB_053503_NGUYEN2.Models;
 #line hidden
 #nullable disable
             WriteLiteral("            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c6e69ddb1ca0e197e43bbf71256be2add7470ad53701", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c6e69ddb1ca0e197e43bbf71256be2add7470ad53888", async() => {
                 WriteLiteral("\r\n                ");
 #nullable restore
 #line 8 "D:\ИГИ\WEB_053503_NGUYEN2\WEB_053503_NGUYEN2\Views\Shared\Components\Menu\Default.cshtml"
@@ -138,7 +145,7 @@ AddHtmlAttributeValue(" ", 245, item.Active, 246, 12, false);
 #line hidden
 #nullable disable
             WriteLiteral("            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c6e69ddb1ca0e197e43bbf71256be2add7470ad57170", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c6e69ddb1ca0e197e43bbf71256be2add7470ad57357", async() => {
                 WriteLiteral("\r\n                ");
 #nullable restore
 #line 13 "D:\ИГИ\WEB_053503_NGUYEN2\WEB_053503_NGUYEN2\Views\Shared\Components\Menu\Default.cshtml"

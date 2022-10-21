@@ -1,5 +1,4 @@
-﻿
-<a asp-controller="Cart" asp-action="Intex" class="navbae-text ml-auto">
+﻿@*<a asp-controller="Cart" asp-action="Intex" class="navbae-text ml-auto">
     00,0 руб <i class="fas fa-shopping-cart nav-color"></i> (0)
 </a>
 <div class="dropdown ml-4 nav-color">
@@ -21,4 +20,59 @@
         <a class="dropdown-item" asp-controller="Cart" asp-action="Index">Мои товары</a>
         <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Logout">Log off</a>
     </div>
-</div>
+
+
+
+</div>*@
+
+ @using Microsoft.AspNetCore.Identity;
+ @using WEB_053503_NGUYEN2.Entities;
+ @inject SignInManager<ApplicationUser> signInManager
+
+@if (signInManager.IsSignedIn(User))
+{
+     <a asp-controller="Cart" asp-action="Intex" class="navbae-text ml-auto">
+    00,0 руб <i class="fas fa-shopping-cart nav-color"></i> (0)
+     </a>
+  <div class="dropdown ml-4 nav-color">
+    <div class="dropdown-toggle" id="dropdownMenuButton"
+         data-toggle="dropdown" aria-haspopup="true"
+         aria-expanded="false">
+        <img src=@Url.Action("GetAvatar","Image")
+        width="30"
+             alt="User" class="rounded" />
+    </div>
+    <div class="dropdown-menu"
+         aria-labelledby="dropdownMenuButton">
+        <div class="dropdown-item-text">
+                <img src=@Url.Action("GetAvatar","Image") width="50"
+                 alt="User" class="rounded" />
+            @User.Identity.Name
+        </div>
+
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" asp-controller="Cart" asp-action="Index">Мои товары</a>
+            <form asp-area="Identity" asp-page="/Account/Logout" 
+            asp-route-returnurl="@ViewContext.HttpContext.Request.Path">
+                <input type="submit" class="dropdown-item" value="Выйти">
+     
+            </form>
+       @* <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Logout">Log off</a>*@
+    </div>
+  </div>
+}
+else
+{
+    <ul class="nav navbar-nav ml-auto">
+        <li>
+            <a class="nav-item nav-link" asp-area="Identity" asp-page="/Account/Login">
+                Войти
+            </a>
+        </li>
+        <li>
+            <a class="nav-item nav-link" asp-area="Identity" asp-page="/Account/Register">
+                Зарегистрироваться
+            </a>
+        </li>
+    </ul>
+}
